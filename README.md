@@ -19,7 +19,11 @@ Then use **Open Folder…** (`Cmd-Shift-O`) and point Marki at `examples/` for a
 | `npm run build`     | Typecheck and build main, preload and renderer |
 | `npm run typecheck` | `tsc --noEmit` over both project references    |
 | `npm test`          | Vitest — markdown round-trip and unit tests    |
-| `npm run package`   | Unpacked macOS app via electron-builder        |
+| `npm run package`   | Unpacked macOS app in `release/`, for testing  |
+| `npm run dist:mac`  | DMG and zip for Apple Silicon and Intel        |
+| `npm run icon`      | Re-render `build/icon.png` from `icon.svg`     |
+
+Runtime code is bundled into `out/` by electron-vite, so only packages the main process `require`s at runtime belong in `dependencies`; everything else is a `devDependency` and stays out of the app bundle. Builds are unsigned until a Developer ID certificate is set up (see electron-builder's code-signing docs).
 
 ## What's inside
 
