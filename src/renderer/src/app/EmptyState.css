@@ -1,0 +1,102 @@
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-7);
+  text-align: center;
+  background: var(--bg-app);
+}
+
+.empty-state__title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.empty-state__subtitle {
+  margin: var(--space-2) 0 var(--space-6);
+  color: var(--text-tertiary);
+}
+
+.empty-state__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(420px, 100%);
+}
+
+.empty-state__action {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-raised);
+  color: var(--text-primary);
+  text-align: left;
+  transition: background var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+}
+
+.empty-state__action:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-default);
+}
+
+.empty-state__action svg {
+  color: var(--accent);
+}
+
+.empty-state__action-label {
+  font-size: 1rem;
+}
+
+.empty-state__shortcut {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-ui-sm);
+}
+
+.empty-state__recent {
+  margin-top: var(--space-6);
+  width: min(420px, 100%);
+  text-align: left;
+}
+
+.empty-state__recent-title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-ui-sm);
+  color: var(--text-tertiary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.empty-state__recent-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.empty-state__recent-item {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+
+.empty-state__recent-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.empty-state__hint {
+  margin-top: var(--space-6);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-ui-sm);
+}

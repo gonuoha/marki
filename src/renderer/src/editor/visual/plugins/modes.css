@@ -1,0 +1,124 @@
+.ProseMirror {
+  caret-color: transparent;
+}
+
+.marki-typewriter-pad {
+  pointer-events: none;
+}
+
+.marki-typewriter-guide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-subtle);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.marki-dim {
+  opacity: var(--focus-dim-opacity);
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.marki-focus-inline {
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.marki-placeholder {
+  color: var(--text-tertiary);
+  pointer-events: none;
+  user-select: none;
+}
+
+.marki-custom-caret {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 1px;
+  transform-origin: center top;
+}
+
+.marki-custom-caret--solid {
+  animation: none;
+}
+
+.marki-custom-caret--smooth {
+  animation: marki-caret-smooth 1.1s var(--ease-out) infinite;
+}
+
+.marki-custom-caret--phase {
+  animation: marki-caret-phase 1s steps(1, end) infinite;
+}
+
+.marki-custom-caret--expand {
+  animation: marki-caret-expand 1.1s var(--ease-out) infinite;
+}
+
+.marki-custom-caret__hdr {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+}
+
+.marki-custom-caret--hdr .marki-custom-caret__hdr {
+  opacity: 1;
+  background: color(display-p3 1.45 1.42 1.2);
+  mix-blend-mode: screen;
+}
+
+@keyframes marki-caret-smooth {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes marki-caret-phase {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes marki-caret-expand {
+  0%,
+  45% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  50%,
+  95% {
+    transform: scaleY(0.35);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marki-dim,
+  .marki-focus-inline,
+  .marki-custom-caret--smooth,
+  .marki-custom-caret--phase,
+  .marki-custom-caret--expand {
+    animation: none !important;
+    transition: none !important;
+  }
+}

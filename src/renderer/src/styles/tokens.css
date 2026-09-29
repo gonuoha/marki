@@ -1,0 +1,346 @@
+/**
+ * Design tokens. Every colour, radius and duration in Marki comes from here.
+ * Themes override the same variable names on [data-theme] so components never
+ * branch on theme.
+ */
+
+:root {
+  /* Typography — overridden at runtime from settings.editor.typography */
+  --font-body: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+  --font-size-body: 17px;
+  --line-height-body: 1.7;
+  --measure: 720px;
+
+  --font-size-ui: 13px;
+  --font-size-ui-sm: 11.5px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 7px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+
+  /* Chrome metrics */
+  --titlebar-height: 40px;
+  --tabbar-height: 34px;
+  --bottombar-height: 40px;
+  --sidebar-width: 248px;
+  --sidebar-min-width: 180px;
+  --sidebar-max-width: 420px;
+
+  /* Motion */
+  --duration-fast: 90ms;
+  --duration-base: 140ms;
+  --duration-slow: 240ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 6px 20px rgb(0 0 0 / 0.14);
+  --shadow-lg: 0 24px 60px rgb(0 0 0 / 0.22);
+
+  --focus-dim-opacity: 0.28;
+
+  /* The visual document sits on the pane unless a theme gives it a page. */
+  --page-bg: transparent;
+  --page-border: transparent;
+  --page-gap: 0px;
+  --page-padding-x: var(--space-5);
+
+  /* Heading colour in the source view. */
+  --md-heading: var(--text-primary);
+
+  --z-dialog: 100;
+  --z-palette: 120;
+  --z-toast: 140;
+}
+
+/* ---------------------------------------------------------------- light */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-app: #f6f6f4;
+  --bg-surface: #ffffff;
+  --bg-surface-raised: #ffffff;
+  --bg-sunken: #efeeea;
+  --bg-hover: rgb(0 0 0 / 0.045);
+  --bg-active: rgb(0 0 0 / 0.075);
+  --bg-selected: #e3ecfb;
+  --bg-overlay: rgb(255 255 255 / 0.72);
+  --scrim: rgb(20 20 20 / 0.28);
+
+  --text-primary: #1b1b1a;
+  --text-secondary: #5c5b57;
+  --text-tertiary: #8b8a85;
+  --text-inverted: #ffffff;
+  --text-link: #1f6feb;
+
+  --border-subtle: rgb(0 0 0 / 0.08);
+  --border-default: rgb(0 0 0 / 0.14);
+  --border-strong: rgb(0 0 0 / 0.26);
+
+  --accent: #f97316;
+  --accent-hover: #ea6a0c;
+  --accent-soft: rgb(249 115 22 / 0.14);
+  --accent-contrast: #ffffff;
+
+  --danger: #d23b3b;
+  --success: #2f9e44;
+  --warning: #cc8a04;
+
+  --syntax-keyword: #a626a4;
+  --syntax-string: #50a14f;
+  --syntax-number: #986801;
+  --syntax-comment: #a0a1a7;
+  --syntax-function: #4078f2;
+  --syntax-variable: #e45649;
+  --syntax-punctuation: #6b6b6b;
+
+  --md-marker: #b9b8b2;
+  --md-code-bg: #f1f0ec;
+  --md-quote-border: #d9d8d2;
+  --md-rule: #d9d8d2;
+  --md-table-header-bg: #f3f2ee;
+}
+
+/* ----------------------------------------------------------------- dark */
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Indigo-tinted neutrals with a lavender accent. */
+  --bg-app: #1b1c26;
+  --bg-surface: #1e1f2a;
+  --bg-surface-raised: #272836;
+  --bg-sunken: #171821;
+  --bg-hover: rgb(255 255 255 / 0.055);
+  --bg-active: rgb(255 255 255 / 0.09);
+  --bg-selected: #2f2b4d;
+  --bg-overlay: rgb(30 31 42 / 0.82);
+  --scrim: rgb(6 6 14 / 0.55);
+
+  --text-primary: #e3e3ec;
+  --text-secondary: #a4a5b8;
+  --text-tertiary: #6f7089;
+  --text-inverted: #16161f;
+  --text-link: #aa9cff;
+
+  --border-subtle: rgb(255 255 255 / 0.065);
+  --border-default: rgb(255 255 255 / 0.11);
+  --border-strong: rgb(255 255 255 / 0.22);
+
+  --accent: #a594f9;
+  --accent-hover: #b7a9ff;
+  --accent-soft: rgb(165 148 249 / 0.18);
+  --accent-contrast: #16151f;
+
+  --danger: #f27a8a;
+  --success: #6fcf97;
+  --warning: #e8c46a;
+
+  --syntax-keyword: #c792ea;
+  --syntax-string: #c3e88d;
+  --syntax-number: #f5a97f;
+  --syntax-comment: #686b86;
+  --syntax-function: #8aadf4;
+  --syntax-variable: #f28fad;
+  --syntax-punctuation: #9496b3;
+
+  --md-marker: #5c5e7a;
+  --md-code-bg: #262736;
+  --md-quote-border: #3b3c55;
+  --md-rule: #34354b;
+  --md-table-header-bg: #252635;
+
+  --page-bg: #20212d;
+  --page-border: rgb(255 255 255 / 0.055);
+  --page-gap: var(--space-5);
+  --page-padding-x: var(--space-7);
+  --md-heading: var(--accent);
+}
+
+/* ---------------------------------------------------------------- sepia */
+
+[data-theme='sepia'] {
+  color-scheme: light;
+
+  --bg-app: #f2e9d8;
+  --bg-surface: #faf3e4;
+  --bg-surface-raised: #fdf8ec;
+  --bg-sunken: #eadfc9;
+  --bg-hover: rgb(90 60 20 / 0.06);
+  --bg-active: rgb(90 60 20 / 0.1);
+  --bg-selected: #e7d9ba;
+  --bg-overlay: rgb(250 243 228 / 0.78);
+  --scrim: rgb(60 45 25 / 0.28);
+
+  --text-primary: #3b3227;
+  --text-secondary: #6b5c47;
+  --text-tertiary: #97876e;
+  --text-inverted: #faf3e4;
+  --text-link: #9a5b22;
+
+  --border-subtle: rgb(90 60 20 / 0.12);
+  --border-default: rgb(90 60 20 / 0.2);
+  --border-strong: rgb(90 60 20 / 0.34);
+
+  --accent: #b4632a;
+  --accent-hover: #9d5423;
+  --accent-soft: rgb(180 99 42 / 0.16);
+  --accent-contrast: #faf3e4;
+
+  --danger: #b3402f;
+  --success: #5b7d3a;
+  --warning: #a97b1f;
+
+  --syntax-keyword: #8a4b8f;
+  --syntax-string: #5b7d3a;
+  --syntax-number: #96651a;
+  --syntax-comment: #a2937c;
+  --syntax-function: #3f6ea8;
+  --syntax-variable: #a9502f;
+  --syntax-punctuation: #7a6b56;
+
+  --md-marker: #bcab8e;
+  --md-code-bg: #efe4cd;
+  --md-quote-border: #d8c7a6;
+  --md-rule: #d8c7a6;
+  --md-table-header-bg: #eee2c9;
+}
+
+/* ------------------------------------------------------------- midnight */
+
+[data-theme='midnight'] {
+  color-scheme: dark;
+
+  --bg-app: #0b0d12;
+  --bg-surface: #10131a;
+  --bg-surface-raised: #161a23;
+  --bg-sunken: #070910;
+  --bg-hover: rgb(255 255 255 / 0.045);
+  --bg-active: rgb(255 255 255 / 0.08);
+  --bg-selected: #1d2b45;
+  --bg-overlay: rgb(16 19 26 / 0.8);
+  --scrim: rgb(0 0 0 / 0.62);
+
+  --text-primary: #dfe4ee;
+  --text-secondary: #99a1b3;
+  --text-tertiary: #646c7e;
+  --text-inverted: #0b0d12;
+  --text-link: #7aa7ff;
+
+  --border-subtle: rgb(255 255 255 / 0.06);
+  --border-default: rgb(255 255 255 / 0.11);
+  --border-strong: rgb(255 255 255 / 0.22);
+
+  --accent: #7c8cff;
+  --accent-hover: #93a0ff;
+  --accent-soft: rgb(124 140 255 / 0.18);
+  --accent-contrast: #0b0d12;
+
+  --danger: #ff7b7b;
+  --success: #4fc98a;
+  --warning: #e3bb55;
+
+  --syntax-keyword: #b18cff;
+  --syntax-string: #7fd4a0;
+  --syntax-number: #e0a96d;
+  --syntax-comment: #5a6274;
+  --syntax-function: #7aa7ff;
+  --syntax-variable: #ff8fa3;
+  --syntax-punctuation: #8b94a7;
+
+  --md-marker: #454c5c;
+  --md-code-bg: #151921;
+  --md-quote-border: #262c39;
+  --md-rule: #222835;
+  --md-table-header-bg: #141821;
+}
+
+/* --------------------------------------------------------------- resets */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-ui);
+  color: var(--text-primary);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  cursor: default;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: default;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+/* Scrollbars stay out of the way until hovered. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: var(--radius-full);
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  background-clip: content-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

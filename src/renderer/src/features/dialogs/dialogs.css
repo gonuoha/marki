@@ -1,0 +1,196 @@
+.marki-dialog-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--scrim);
+  animation: marki-dialog-fade-in var(--duration-base) var(--ease-out);
+}
+
+.marki-dialog {
+  width: min(420px, calc(100vw - var(--space-6)));
+  background: var(--bg-surface-raised);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-5);
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  animation: marki-dialog-slide-in var(--duration-base) var(--ease-out);
+}
+
+.marki-dialog__title {
+  margin: 0 0 var(--space-4);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.marki-dialog__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.marki-dialog__field label {
+  font-size: var(--font-size-ui-sm);
+  color: var(--text-secondary);
+}
+
+.marki-dialog__field input,
+.marki-dialog__field select {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-ui);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.marki-dialog__field input:focus,
+.marki-dialog__field select:focus {
+  outline: 2px solid var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.marki-dialog__row {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.marki-dialog__row input {
+  flex: 1;
+}
+
+.marki-dialog__warning {
+  font-size: var(--font-size-ui-sm);
+  color: var(--warning);
+  margin: calc(-1 * var(--space-2)) 0 var(--space-3);
+}
+
+.marki-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.marki-dialog__btn {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-ui);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.marki-dialog__btn:hover {
+  background: var(--bg-hover);
+}
+
+.marki-dialog__btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.marki-dialog__btn--primary:hover {
+  background: var(--accent-hover);
+}
+
+.marki-dialog__btn--danger {
+  color: var(--danger);
+}
+
+.marki-dialog__segmented {
+  display: inline-flex;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.marki-dialog__segmented button {
+  border: none;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-ui-sm);
+  cursor: pointer;
+}
+
+.marki-dialog__segmented button[aria-pressed='true'] {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.marki-dialog__grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 3px;
+  margin-bottom: var(--space-3);
+}
+
+.marki-dialog__grid-cell {
+  aspect-ratio: 1;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.marki-dialog__grid-cell:hover,
+.marki-dialog__grid-cell--active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.marki-dialog__preview {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-sunken);
+  text-align: center;
+  min-height: 80px;
+}
+
+.marki-dialog__preview img {
+  max-width: 100%;
+  max-height: 160px;
+}
+
+@keyframes marki-dialog-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes marki-dialog-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marki-dialog-scrim,
+  .marki-dialog {
+    animation: none;
+  }
+
+  .marki-dialog__btn,
+  .marki-dialog__grid-cell {
+    transition: none;
+  }
+}

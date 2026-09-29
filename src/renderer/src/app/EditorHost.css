@@ -1,0 +1,60 @@
+.editor-host {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-app);
+}
+
+.editor-host__split {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.editor-host__pane {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editor-host__pane--visual {
+  flex: 0 0 calc(var(--split-ratio, 0.5) * 100%);
+}
+
+.editor-host__pane--source {
+  flex: 1;
+}
+
+.editor-host__divider {
+  width: 5px;
+  cursor: col-resize;
+  background: transparent;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.editor-host__divider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: 2px;
+  width: 1px;
+  background: var(--border-subtle);
+}
+
+.editor-placeholder {
+  flex: 1;
+  margin: 0;
+  padding: var(--space-6) var(--space-5);
+  overflow: auto;
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: text;
+}

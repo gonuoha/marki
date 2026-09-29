@@ -1,0 +1,90 @@
+.find-bar {
+  position: fixed;
+  top: calc(var(--titlebar-height) + var(--tabbar-height) + var(--space-3));
+  right: var(--space-5);
+  z-index: var(--z-palette);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  animation: find-in var(--duration-base) var(--ease-out);
+}
+
+.find-bar__field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.find-bar input[type='text'] {
+  width: 180px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+}
+
+.find-bar__count {
+  min-width: 4.5rem;
+  font-size: var(--font-size-ui-sm);
+  color: var(--text-tertiary);
+}
+
+.find-bar__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-ui-sm);
+  color: var(--text-secondary);
+}
+
+.find-bar__toggle input {
+  accent-color: var(--accent);
+}
+
+.find-bar__actions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.find-bar__button {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--bg-hover);
+}
+
+.find-bar__button:hover {
+  background: var(--bg-active);
+}
+
+.marki-find-match {
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: 2px;
+}
+
+.marki-find-current {
+  background: color-mix(in srgb, var(--accent) 44%, transparent);
+  outline: 1px solid var(--accent);
+}
+
+@keyframes find-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .find-bar {
+    animation: none;
+  }
+}

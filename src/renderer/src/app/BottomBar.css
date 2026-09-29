@@ -1,0 +1,42 @@
+.bottom-bar {
+  flex-shrink: 0;
+  height: var(--bottombar-height);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-app);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-ui-sm);
+  container-type: inline-size;
+}
+
+.bottom-bar__side {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.bottom-bar__side--end {
+  justify-content: flex-end;
+}
+
+.bottom-bar__sep {
+  margin: 0 var(--space-2);
+  opacity: 0.6;
+}
+
+.bottom-bar__save--dirty {
+  color: var(--accent);
+}
+
+/* The toolbar has priority; the status text steps aside when space runs out. */
+@container (max-width: 760px) {
+  .bottom-bar__side {
+    visibility: hidden;
+  }
+}

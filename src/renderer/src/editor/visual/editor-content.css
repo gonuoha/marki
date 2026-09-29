@@ -1,0 +1,419 @@
+.marki-visual-editor {
+  flex: 1;
+  overflow: auto;
+  background: var(--bg-app);
+}
+
+.marki-visual-editor .ProseMirror {
+  outline: none;
+  min-height: calc(100% - 2 * var(--page-gap));
+  /* Required by prosemirror-view. Without pre-wrap, runs of spaces collapse and
+     the newlines that keep hand-wrapped paragraphs intact are lost. */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  -webkit-font-variant-ligatures: none;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0;
+}
+
+.marki-doc {
+  /* Extra page padding widens the page rather than narrowing the measure. */
+  max-width: min(
+    calc(var(--measure) + 2 * (var(--page-padding-x) - var(--space-5))),
+    calc(100% - 2 * var(--page-gap))
+  );
+  margin: var(--page-gap) auto;
+  padding: var(--space-7) var(--page-padding-x);
+  background: var(--page-bg);
+  border: 1px solid var(--page-border);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--text-primary);
+  caret-color: var(--text-primary);
+}
+
+.marki-doc > *:first-child {
+  margin-top: 0;
+}
+
+.marki-doc p {
+  margin: 0 0 1em;
+}
+
+.marki-doc h1,
+.marki-doc h2,
+.marki-doc h3,
+.marki-doc h4,
+.marki-doc h5,
+.marki-doc h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 1.6em 0 0.6em;
+  letter-spacing: -0.01em;
+}
+
+.marki-doc h1 { font-size: 1.85em; }
+.marki-doc h2 { font-size: 1.45em; }
+.marki-doc h3 { font-size: 1.2em; }
+.marki-doc h4 { font-size: 1.05em; }
+.marki-doc h5 { font-size: 1em; }
+.marki-doc h6 { font-size: 0.95em; color: var(--text-secondary); }
+
+.marki-doc blockquote {
+  margin: 0 0 1em;
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--md-quote-border);
+  color: var(--text-secondary);
+}
+
+.marki-doc a {
+  color: var(--text-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.marki-doc code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--md-code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+
+.marki-doc pre {
+  margin: 0 0 1em;
+}
+
+.marki-doc hr {
+  border: none;
+  margin: 2em 0;
+  text-align: center;
+  color: var(--text-tertiary);
+}
+
+.marki-doc hr::after {
+  content: '* * *';
+  letter-spacing: 0.35em;
+}
+
+.marki-doc ul,
+.marki-doc ol {
+  margin: 0 0 1em;
+  padding-left: 1.4em;
+}
+
+.marki-doc li {
+  margin: 0.25em 0;
+}
+
+.marki-doc li[data-checked='true'] {
+  list-style: none;
+  position: relative;
+}
+
+.marki-doc li[data-checked='true']::marker,
+.marki-doc li[data-checked='false']::marker {
+  content: '';
+}
+
+.marki-doc li[data-checked='true']::before {
+  content: '☑';
+  position: absolute;
+  left: -1.4em;
+  color: var(--text-secondary);
+}
+
+.marki-doc li[data-checked='false']::before {
+  content: '☐';
+  position: absolute;
+  left: -1.4em;
+  color: var(--text-tertiary);
+}
+
+.marki-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1em;
+  font-size: 0.95em;
+}
+
+.marki-doc th,
+.marki-doc td {
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-2) var(--space-3);
+  vertical-align: top;
+}
+
+.marki-doc th {
+  background: var(--md-table-header-bg);
+  font-weight: 600;
+}
+
+.marki-doc th[data-alignment='center'],
+.marki-doc td[data-alignment='center'] {
+  text-align: center;
+}
+
+.marki-doc th[data-alignment='right'],
+.marki-doc td[data-alignment='right'] {
+  text-align: right;
+}
+
+/* Post-syntax gutter markers */
+.marki-doc [data-active] {
+  position: relative;
+}
+
+.marki-doc [data-active]::before {
+  position: absolute;
+  right: calc(100% + var(--space-3));
+  width: 2.5em;
+  text-align: right;
+  color: var(--md-marker);
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  user-select: none;
+  pointer-events: none;
+  content: var(--block-marker, '');
+}
+
+.marki-doc h1[data-active] { --block-marker: '#'; }
+.marki-doc h2[data-active] { --block-marker: '##'; }
+.marki-doc h3[data-active] { --block-marker: '###'; }
+.marki-doc h4[data-active] { --block-marker: '####'; }
+.marki-doc h5[data-active] { --block-marker: '#####'; }
+.marki-doc h6[data-active] { --block-marker: '######'; }
+.marki-doc blockquote[data-active] { --block-marker: '>'; }
+.marki-doc ul[data-active] { --block-marker: '-'; }
+.marki-doc ol[data-active] { --block-marker: '1.'; }
+
+/* Code block node view */
+.marki-code-block {
+  margin: 0 0 1em;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: var(--md-code-bg);
+}
+
+.marki-code-block__toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--space-1) var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.marki-code-block__lang {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-ui-sm);
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+}
+
+.marki-code-block__editor .cm-editor {
+  min-height: 4em;
+}
+
+/* Image node view */
+.marki-image {
+  display: inline-block;
+  max-width: 100%;
+  margin: var(--space-2) 0;
+}
+
+.marki-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+.marki-image--center {
+  display: block;
+  text-align: center;
+}
+
+.marki-image--left {
+  display: block;
+}
+
+.marki-image--right {
+  display: block;
+  text-align: right;
+}
+
+.marki-image--float-right {
+  float: right;
+  margin-left: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.marki-image--selected {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.marki-image__broken {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  min-width: 120px;
+  background: var(--bg-sunken);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-ui-sm);
+  border-radius: var(--radius-sm);
+}
+
+/* Math */
+.marki-math {
+  cursor: pointer;
+}
+
+.marki-math--block {
+  display: block;
+  margin: 0 0 1em;
+  text-align: center;
+}
+
+.marki-math__input {
+  font-family: var(--font-mono);
+  width: 100%;
+  padding: var(--space-2);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* HTML block */
+.marki-html-block {
+  margin: 0 0 1em;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-sunken);
+  overflow: hidden;
+}
+
+.marki-html-block__label {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-ui-sm);
+  color: var(--text-tertiary);
+  padding: var(--space-1) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.marki-html-block__source {
+  display: block;
+  width: 100%;
+  min-height: 4em;
+  padding: var(--space-3);
+  border: none;
+  resize: vertical;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+/* Front matter */
+.marki-front-matter {
+  margin: 0 0 var(--space-5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface-raised);
+  box-shadow: var(--shadow-sm);
+}
+
+.marki-front-matter__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--font-size-ui);
+  text-align: left;
+  cursor: pointer;
+}
+
+.marki-front-matter__header:hover {
+  background: var(--bg-hover);
+}
+
+.marki-front-matter__badge {
+  font-size: var(--font-size-ui-sm);
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.marki-front-matter__summary {
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.marki-front-matter__source {
+  display: block;
+  width: 100%;
+  min-height: 6em;
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  resize: vertical;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--bg-sunken);
+  color: var(--text-primary);
+}
+
+/* Table controls */
+.marki-table-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+}
+
+.marki-table-control {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-ui-sm);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.marki-table-control:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.marki-table-align {
+  display: inline-flex;
+  gap: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marki-table-control {
+    transition: none;
+  }
+}
