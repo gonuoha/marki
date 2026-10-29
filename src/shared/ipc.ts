@@ -77,7 +77,8 @@ export const IPC = {
     menuCommand: 'app:menuCommand',
     confirmDiscard: 'app:confirmDiscard',
     showError: 'app:showError',
-    platform: 'app:platform'
+    platform: 'app:platform',
+    openLink: 'app:openLink'
   }
 } as const
 
@@ -89,6 +90,9 @@ export interface ConfirmDiscardRequest {
 
 /** 'save' writes and closes, 'discard' closes, 'cancel' aborts. */
 export type ConfirmDiscardResult = 'save' | 'discard' | 'cancel'
+
+/** 'invalid' means the href has no safe browser-openable scheme. */
+export type OpenLinkResult = 'opened' | 'invalid'
 
 export interface PlatformInfo {
   platform: NodeJS.Platform
@@ -157,5 +161,7 @@ export interface MarkiApi {
     confirmDiscard(request: ConfirmDiscardRequest): Promise<ConfirmDiscardResult>
     showError(title: string, message: string): void
     platform(): Promise<PlatformInfo>
+    /** Opens an http(s) or mailto link in the system default handler. */
+    openLink(href: string): Promise<OpenLinkResult>
   }
 }

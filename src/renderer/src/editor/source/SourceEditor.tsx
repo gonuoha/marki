@@ -15,6 +15,7 @@ import {
   sourceFormatKeymap,
   sourceFormatSnapshot
 } from './source-format'
+import { sourceLinkClick } from './source-link-click'
 import './source.css'
 
 const SELECTION_REPORT_MS = 80
@@ -64,6 +65,7 @@ function buildExtensions(onUpdate: Extension, formatHandlers: FormatHandlers): E
       codeLanguages: languages
     }),
     EditorView.lineWrapping,
+    sourceLinkClick(),
     keymap.of([...defaultKeymap, ...historyKeymap, ...searchKeymap]),
     themeCompartment.of(getMarkdownTheme())
   ]

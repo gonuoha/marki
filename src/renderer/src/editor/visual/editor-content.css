@@ -73,6 +73,11 @@
   color: var(--text-link);
   text-decoration: underline;
   text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.marki-doc a:hover {
+  text-decoration-thickness: 2px;
 }
 
 .marki-doc code {

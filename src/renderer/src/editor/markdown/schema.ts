@@ -440,15 +440,15 @@ const marks: Record<string, MarkSpec> = {
       {
         tag: 'a[href]',
         getAttrs(dom) {
-          return {
-            href: (dom as HTMLElement).getAttribute('href'),
-            title: dom.getAttribute('title')
-          }
+          const href = (dom as HTMLElement).getAttribute('href')
+          const title = dom.getAttribute('title')
+          return { href, title: title === href ? null : title }
         }
       }
     ],
     toDOM(node) {
-      return ['a', node.attrs]
+      // Untitled links show their URL as the hover tooltip; parseDOM drops it again.
+      return ['a', { href: node.attrs.href, title: node.attrs.title ?? node.attrs.href }]
     }
   },
 

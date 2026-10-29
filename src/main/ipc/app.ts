@@ -1,6 +1,12 @@
-import { app, dialog, ipcMain } from 'electron'
+import { app, dialog, ipcMain, shell } from 'electron'
 import { IPC } from '@shared/ipc'
-import type { ConfirmDiscardRequest, ConfirmDiscardResult, PlatformInfo } from '@shared/ipc'
+import type {
+  ConfirmDiscardRequest,
+  ConfirmDiscardResult,
+  OpenLinkResult,
+  PlatformInfo
+} from '@shared/ipc'
+import { normalizeExternalUrl } from '@shared/open-link'
 import { senderWindow, wrapHandler } from './index'
 
 export function registerAppIpc(): void {
@@ -39,6 +45,16 @@ export function registerAppIpc(): void {
     IPC.app.showError,
     wrapHandler(IPC.app.showError, async (_event, title: string, message: string): Promise<void> => {
       dialog.showErrorBox(title, message)
+    })
+  )
+
+  ipcMain.handle(
+    IPC.app.openLink,
+    wrapHandler(IPC.app.openLink, async (_event, href: string): Promise<OpenLinkResult> => {
+      const url = normalizeExternalUrl(String(href ?? ''))
+      if (!url) return 'invalid'
+      await shell.openExternal(url)
+      return 'opened'
     })
   )
 }

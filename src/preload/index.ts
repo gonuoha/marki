@@ -13,7 +13,12 @@ import type {
   WindowDocumentState,
   WorkspaceInfo
 } from '@shared/types'
-import type { ConfirmDiscardRequest, ConfirmDiscardResult, PlatformInfo } from '@shared/ipc'
+import type {
+  ConfirmDiscardRequest,
+  ConfirmDiscardResult,
+  OpenLinkResult,
+  PlatformInfo
+} from '@shared/ipc'
 
 function onChannel<T>(channel: string, handler: (payload: T) => void): Unsubscribe {
   const listener = (_event: Electron.IpcRendererEvent, payload: T): void => {
@@ -86,7 +91,8 @@ const api: MarkiApi = {
     showError: (title: string, message: string) => {
       void ipcRenderer.invoke(IPC.app.showError, title, message)
     },
-    platform: () => ipcRenderer.invoke(IPC.app.platform) as Promise<PlatformInfo>
+    platform: () => ipcRenderer.invoke(IPC.app.platform) as Promise<PlatformInfo>,
+    openLink: (href: string) => ipcRenderer.invoke(IPC.app.openLink, href) as Promise<OpenLinkResult>
   }
 }
 

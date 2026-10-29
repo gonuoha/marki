@@ -37,6 +37,7 @@ import { createKeymap } from './keymap'
 import { createNodeViews } from './nodeviews'
 import { importAndInsertImage } from './nodeviews/image'
 import { createModePlugins } from './plugins'
+import { linkClickPlugin } from './plugins/link-click'
 import { columnResizing, createTableControlsPlugin, tableEditing } from './table-controls'
 import './editor-content.css'
 
@@ -143,6 +144,7 @@ function buildPlugins(): Plugin[] {
     activeBlockPlugin(),
     protectFrontMatterPlugin(),
     createTableControlsPlugin(),
+    linkClickPlugin(),
     ...createModePlugins()
   ]
 }
